@@ -19,7 +19,7 @@ spring:
   data:
     redis:
       repositories:
-        enabled: false
+        enabled: true
 #  pid:
 #    file: /自行指定位置/eladmin.pid
 
