@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 443
   http2:
     # 启用 HTTP/2 支持，提升传输效率
     enabled: true
@@ -19,7 +19,7 @@ spring:
   data:
     redis:
       repositories:
-        enabled: true
+        enabled: false
 #  pid:
 #    file: /自行指定位置/eladmin.pid
 

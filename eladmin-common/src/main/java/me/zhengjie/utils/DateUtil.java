@@ -16,6 +16,7 @@
 
 package me.zhengjie.utils;
 
+import cn.hutool.core.date.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
@@ -142,6 +143,13 @@ public class DateUtil {
     public static LocalDateTime parseLocalDateTimeFormat(String localDateTime, String pattern) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDateTime.from(dateTimeFormatter.parse(localDateTime));
+    }
+
+    public static LocalDateTime parseLocalDateTimeFormat(String localDateTime) {
+        DateTime parse = cn.hutool.core.date.DateUtil.parse("Thu Jan 23 16:29:42 CST 2025");
+        Instant instant = parse.toInstant();
+        ZoneId zoneId = ZoneId.systemDefault();
+        return instant.atZone(zoneId).toLocalDateTime();
     }
 
     /**

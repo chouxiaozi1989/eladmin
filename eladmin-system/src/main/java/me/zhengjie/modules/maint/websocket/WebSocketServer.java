@@ -57,6 +57,7 @@ public class WebSocketServer {
 		webSocketSet.removeIf(webSocket -> webSocket.sid.equals(sid));
 		webSocketSet.add(this);
 		this.sid=sid;
+		System.out.println("websocket open:".concat(sid));
 	}
 
 	/**

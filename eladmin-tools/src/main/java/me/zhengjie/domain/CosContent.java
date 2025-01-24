@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -39,7 +40,7 @@ public class CosContent {
     private String type = "公开";
 
     @NotBlank
-    @Column(name = "key")
+    @Column(name = "content_key")
     @ApiModelProperty(value = "key")
     private String key;
 
@@ -51,7 +52,7 @@ public class CosContent {
     @NotBlank
     @Column(name = "update_time")
     @ApiModelProperty(value = "update_time")
-    private Long updateTime;
+    private Timestamp updateTime;
 
     @NotBlank
     @Column(name = "crc64Ecma")

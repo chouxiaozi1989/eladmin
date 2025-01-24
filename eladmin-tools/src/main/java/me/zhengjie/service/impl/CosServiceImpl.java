@@ -49,6 +49,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.ZoneOffset;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -127,7 +128,7 @@ public class CosServiceImpl implements CosService {
             content.setKey(uploadResult.getKey());
             content.setBucketName(uploadResult.getBucketName());
             content.setSuffix(FileUtil.getSuffix(fileName));
-            content.setUpdateTime(DateUtil.parseLocalDateTimeFormat(uploadResult.getDateStr(), "EEE, dd MMM yyyy hh:mm:ss z").toInstant(ZoneOffset.of("+8")).toEpochMilli());
+            content.setUpdateTime(new Timestamp(DateUtil.parseLocalDateTimeFormat(uploadResult.getDateStr()).toInstant(ZoneOffset.of("+8")).toEpochMilli()));
             content.setRequestId(uploadResult.getRequestId());
             content.setVersionId(uploadResult.getVersionId());
             content.setCrc64Ecma(uploadResult.getCrc64Ecma());
@@ -151,9 +152,9 @@ public class CosServiceImpl implements CosService {
         GeneratePresignedUrlRequest req =
                 new GeneratePresignedUrlRequest(content.getBucketName(), content.getKey(), HttpMethodName.GET);
         ResponseHeaderOverrides responseHeaders = new ResponseHeaderOverrides();
-        String responseContentType = "image/x-icon";
+        String responseContentType = "image/".concat(content.getSuffix());
         String responseContentLanguage = "zh-CN";
-        String responseContentDispositon = "filename=\"abc.txt\"";
+        String responseContentDispositon = "filename=".concat(content.getFileName());
         String responseCacheControl = "no-cache";
         String cacheExpireStr = DateUtil.formatRFC822Date(new Date(System.currentTimeMillis() + 24 * 3600 * 1000));
         responseHeaders.setContentType(responseContentType);
@@ -212,7 +213,7 @@ public class CosServiceImpl implements CosService {
                     content.setKey(cosObjectSummary.getKey());
                     content.setBucketName(cosObjectSummary.getBucketName());
                     content.setSuffix(FileUtil.getSuffix(fileName));
-                    content.setUpdateTime(DateUtil.parseLocalDateTimeFormat(cosObjectSummary.getLastModified().toString(), "EEE, dd MMM yyyy hh:mm:ss z").toInstant(ZoneOffset.of("+8")).toEpochMilli());
+                    content.setUpdateTime(new Timestamp(DateUtil.parseLocalDateTimeFormat(cosObjectSummary.getLastModified().toString()).toInstant(ZoneOffset.of("+8")).toEpochMilli()));
                     content.setRequestId(objectMetadata.getRequestId());
                     content.setVersionId(objectMetadata.getVersionId());
                     content.setCrc64Ecma(objectMetadata.getCrc64Ecma());

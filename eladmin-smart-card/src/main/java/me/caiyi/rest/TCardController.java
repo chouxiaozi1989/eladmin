@@ -102,7 +102,6 @@ public class TCardController {
 
     @ApiOperation("小程序登录")
     @GetMapping(value = "/login/{code}")
-    @AnonymousAccess
     public ResponseEntity<MiniProgramLoginDto> login(@NotBlank @PathVariable String code) throws Exception {
         URL url = new URL("https://api.weixin.qq.com/sns/jscode2session");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
