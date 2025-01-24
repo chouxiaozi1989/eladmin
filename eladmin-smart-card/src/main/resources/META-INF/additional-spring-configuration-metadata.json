@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "mini-program",
+      "type": "me.caiyi.config.MiniProgramAppConfiguration",
+      "sourceType": "me.caiyi.config.MiniProgramAppConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mini-program",
+      "type": "java.lang.String",
+      "sourceType": "me.caiyi.config.MiniProgramAppConfiguration",
+      "defaultValue": ""
+    }
+  ],
+  "hints": []
+}
