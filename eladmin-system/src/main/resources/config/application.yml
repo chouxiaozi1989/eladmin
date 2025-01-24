@@ -68,6 +68,9 @@ qiniu:
   # 文件大小 /M
   max-size: 15
 
+cos:
+  max-size: 15
+
 #邮箱验证码有效时间/秒
 code:
   expiration: 300

@@ -132,6 +132,13 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
         return filename;
     }
 
+    public static String getFileNameNoPath(String fullName) {
+        if ((fullName != null) && (!fullName.isEmpty())) {
+            return fullName.substring(fullName.lastIndexOf(File.separator) + 1);
+        }
+        return fullName;
+    }
+
     /**
      * 文件大小转换
      */
